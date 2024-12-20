@@ -1,0 +1,7 @@
+- name: Copying the file from Local to target server
+  template:
+    src: nginx.html
+    dest: /var/www/html/index.nginx-debian.html
+  notify:
+    - Restart Nginx
+

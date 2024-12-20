@@ -1,0 +1,32 @@
+- name: "Creating the Folder"
+  file:
+    path: ./Dec-19
+    state: directory
+
+- name: Creating the file
+  file:
+    path: ./Dec-19/morning.yml
+    state: touch
+
+- name: Uninstall Nginx Packages
+  apt:
+    name: nginx
+    state: absent
+    autoremove: yes
+
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: yes
+
+- name: Updating the Index.html file
+  template:
+    src: ./nginx.html
+    dest: /var/www/html/index.nginx-debian.html
+
+- name: Updating the Server
+  service:
+    name: nginx
+    state: restarted
+

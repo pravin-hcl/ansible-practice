@@ -1,0 +1,4 @@
+---
+runtime_vars_file_value: "Value got from the vars file passed to this using Ansible-Runtime"
+other_variable : "foo"
+version: 3.0
