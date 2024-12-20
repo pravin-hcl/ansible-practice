@@ -1,113 +1,28 @@
 ---
-- name: Example Ansible Playbook for Ansible Variables
+- name: Example Playbook for Environment Variables
   hosts: all
-  remote_user: ubuntu
+  become: true
+    # remote_user: ubuntu
   roles:
     - custom-role
   
-  vars: 
-    # String Variables
-    str_var : "Hello Pravin"
-  
-    # Boolean Variables
-    is_enabled: true
-    
-    # List Variables
-    fruits: 
-      - apple
-      - orange
-      - banana
-    
-    # Dictionary Variables
-    fruit_prices:
-      apple: 10
-      orange: 20
-      banana: 30
-    
-    # Referencing Nested Variables
-    fruit_basket:
-      - name: John
-        fruits:
-          - apple
-          - orange
-      - name: Robert
-        fruits:
-          - banana
-          - apple
-  
-  vars_files:
-    - my-vars.yml
+  environment:
+    PLB_ENV: Playbook level env
 
   tasks:
-    - name: Printing Strign Variable
-      debug:
-        var: str_var
-    
-    - name: Boolean variables
-      debug:
-        msg: "Variable is true"
-      when: is_enabled
+    - name: Printing the playbook level env
+      command: "echo $PLB_ENV"
   
-    - name: Printing All List Variables
-      debug:
-        var: fruits
+    - name: Printing the Task level enviornment varable
+      environment:
+        MY_ENV: task level env
+      ansible.builtin.command: "echo $MY_ENV"
+        #  register: test
 
-    - name: Printing One Element from the variables
-      debug:
-        var: fruits[1]
+        #  - name: Check the env
+        # debug:
+        # var: test
+        #
+    - name: Check whether the task level env is accssible to other tasks
+      command: "echo $MY_ENV --------------- $PLB_ENV"
 
-    - name: Printing all Dictionary variables
-      debug: 
-        var: fruit_prices
-
-    - name: Printing One Element from  Dictionary variables
-      debug:
-        var: fruit_prices.banana
-    
-    - name: Assigning the Value to an another variable from the Dictionary Object Method-1
-      command: echo "{{ fruit_prices.apple }}"
-      register: apple_price
-    
-    - name: Assigning the Value to an another variable from the Dictionary Object Method-2
-      command: echo "{{ fruit_prices['banana'] }}"
-      register: banana_price
-
-    - name: Printing the newly assigned varaible value as Object - Using debug-var
-      debug:
-        var: apple_price
-
-    - name: Printing the newly assigned varaible value - Using debug-var.studout
-      debug:
-        var: apple_price.stdout
-
-    - name: Printing the newly assigned varaible value - Using debug-msg
-      debug:
-        msg: "{{ banana_price }}"
-
-    - name: Printing the newly assigned varaible value - Using debug-msg.stdout
-      debug:
-        msg: "{{ banana_price.stdout }}"
-
-    - name: Printing all the nested variables
-      debug:
-        var: fruit_basket
-    
-    - name: Nested Variables - Printing the price using Dictionary
-      debug:
-        var: fruit_prices[fruit_basket[0].fruits[1]]
-
-    - name: Printing the value from vars_files
-      debug:
-        var: vars_from_my_vars_yml
-
-    - name: Getting the value from Runtime (command line)
-      debug:
-        var: runtime_value
-   
-    - name: Getting the value from Runtime (command line)
-      debug:
-        var: version
-
-    - name: Get the value by passing the vars file in Runtime
-      debug:
-        var: runtime_vars_file_value
