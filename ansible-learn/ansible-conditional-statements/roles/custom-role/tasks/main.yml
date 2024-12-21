@@ -4,3 +4,40 @@
     name: apache2
     state: present
   when: install_apache
+
+- name: "Condition on the Ansible facts - list format check - Both line should return true - then the output will br printed"
+  debug:
+    var: ansible_facts.machine
+  when:
+    - ansible_facts.os_family == "Debian"
+    - ansible_facts.pkg_mgr == "apt-get"
+
+- name: "One line condition - AND - Ansible_facts"
+  debug:
+    var: ansible_facts.processor
+  when: ansible_facts.distribution == "Ubuntu" and ansible_facts["distribution_major_version"] | int > 30
+
+- name: "One line condition - OR - Ansible_facts"
+  debug:
+    var: ansible_facts["default_ipv4"]
+  when: ansible_facts.distribution == "Ubuntu" or ansible_facts["distribution_major_version"] | int > 30
+
+# Conditional check on Variables
+- name: Create a File
+  ansible.builtin.command: touch /home/ubuntu/conditional_file.txt
+
+- name: Edit the file
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/conditional_file.txt
+    line: "Hi"
+    create: yes
+
+- name: Register a Variable for cat command
+  command: cat /home/ubuntu/conditional_file.txt
+  register: condt_var
+
+- name: Conditional STatement for the variable
+  debug:
+    var: condt_var.stdout.find("hi")
+  when: condt_var.stdout
+
