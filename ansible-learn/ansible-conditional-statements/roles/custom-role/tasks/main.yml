@@ -1,0 +1,6 @@
+
+- name: Install the Anible Server - If not installed using When
+  apt:
+    name: apache2
+    state: present
+  when: install_apache
