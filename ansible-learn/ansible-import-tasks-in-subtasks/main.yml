@@ -1,0 +1,8 @@
+---
+- name: Ansible - Import Multiple roles in Parent Main.yml and Import Multiple task in Subtasks
+  hosts: all
+  become: true
+  roles:
+    - role1
+    - role2
+

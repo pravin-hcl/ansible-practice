@@ -1,0 +1,3 @@
+- name: This is 2nd new task under the sub tasks of role1
+  debug:
+    msg: "This is the Office details task "

@@ -1,0 +1,5 @@
+
+- name: This is new task under the sub tasks of role1
+  debug:
+    msg: "This is the User details task "
+

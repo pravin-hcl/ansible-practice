@@ -1,0 +1,7 @@
+---
+- name: Ansible Playbook - Conditional Statements with loops
+  hosts: all
+  become: true
+  roles:
+    - custom-role
+

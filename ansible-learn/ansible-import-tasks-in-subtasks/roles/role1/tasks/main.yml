@@ -1,0 +1,8 @@
+---
+
+- import_tasks: user_details.yml
+- import_tasks: office_details.yml
+- name: Subtask -1
+  debug:
+    msg: "This is a Subtask 1"
+

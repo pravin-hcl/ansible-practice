@@ -19,6 +19,7 @@
 
 - name: "One line condition - OR - Ansible_facts"
   debug:
+#    var: ansible_facts.processor
     var: ansible_facts["default_ipv4"]
   when: ansible_facts.distribution == "Ubuntu" or ansible_facts["distribution_major_version"] | int > 30
 
@@ -36,8 +37,10 @@
   command: cat /home/ubuntu/conditional_file.txt
   register: condt_var
 
-- name: Conditional STatement for the variable
+- name: "Conditional STatement for the variable - not present -1 , present - 0"
   debug:
-    var: condt_var.stdout.find("hi")
-  when: condt_var.stdout
+    var: condt_var.stdout.find("Hi")
+  when: condt_var.stdout.find("Hi") != -1 # here it checks 0 != -1 , Hi --> 0 , Any other word --> -1
+
+
 

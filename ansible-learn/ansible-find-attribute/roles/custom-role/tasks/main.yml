@@ -1,0 +1,20 @@
+- name: Create a File
+  ansible.builtin.command: touch /home/ubuntu/conditional_file.txt
+
+- name: Edit the file
+  ansible.builtin.lineinfile:
+    path: /home/ubuntu/conditional_file.txt
+    line: "Hi"
+    create: yes
+
+- name: Register a Variable for cat command
+  command: cat /home/ubuntu/conditional_file.txt
+  register: condt_var
+
+- name: Check  the output if the value presents
+  debug:
+    var: condt_var.stdout.find("Hi")
+
+- name: Check  the output if the value not presents in the file
+  debug:
+    var: condt_var.stdout.find("hi")
