@@ -1,0 +1,11 @@
+---
+- name: Ansible Playbook - Conditional Statements
+  hosts: all
+  become: true
+  roles:
+    - custom-role
+
+  tasks:
+    - name: Print the ansible facts
+      debug:
+        var: ansible_facts  
