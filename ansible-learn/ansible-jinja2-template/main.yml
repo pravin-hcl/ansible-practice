@@ -1,0 +1,7 @@
+---
+- name: Ansible - Jinja2 Template
+  hosts: all
+  become: yes
+  roles:
+    - install-lighttpd
+
