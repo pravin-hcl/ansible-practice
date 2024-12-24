@@ -10,3 +10,10 @@
   debug:
     msg: Hi {{ msg }}
   ignore_errors: true
+
+- name: Check file is created or not
+  command: touch /home/ubuntu/f2.txt
+  register: file_check
+  changed_when: file_check.rc == 0
+
+
