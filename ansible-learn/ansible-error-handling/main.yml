@@ -1,0 +1,7 @@
+---
+- name: Ansible Error Handling
+  hosts: all
+  become: yes
+  roles:
+    - ignore_errors
+

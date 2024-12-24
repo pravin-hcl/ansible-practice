@@ -1,0 +1,12 @@
+
+- name: Ansible Ignore Errors - example 1
+  template:
+    src: ./index.html
+    dest: /home/ubuntu/index.html
+    register: copy_result
+  ignore_errors: true
+
+- name: Ansible Ignore Errors - example 2
+  debug:
+    msg: Hi {{ msg }}
+  ignore_errors: true
