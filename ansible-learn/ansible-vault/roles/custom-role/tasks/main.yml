@@ -1,0 +1,8 @@
+
+- name: Displaying ansible vault message - Entering Password
+  debug:
+    var: my_secret
+
+- name: Displaying the Anisble Vault - Using ansible-vault.pass file
+  debug:
+    var: my_ansible_vault_pass_file
