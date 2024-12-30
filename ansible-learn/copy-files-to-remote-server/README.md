@@ -12,6 +12,6 @@
 ## Syntax 
 
 ```
-scp -i <identity_file> <files_to_copy_from_local> username@IP:<path_to_paste_file_in_remote_server>
+scp -i <pem_file> <files_to_copy_from_local> username@IP:<path_to_paste_file_in_remote_server>
 ```
 
