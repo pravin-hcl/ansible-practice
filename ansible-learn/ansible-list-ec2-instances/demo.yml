@@ -1,0 +1,22 @@
+---
+# Create the Secret.yml and run the file as ansible-vault -i hosts.ini demo.yml --ask-vault-password
+
+
+- name: List the Ec2 instances from AWS
+  hosts: localhost
+  connection: local
+  become: true
+  vars_files:
+    - secret.yml
+
+  tasks:
+    - name: Print and Register the Ec2 instaces
+      amazon.aws.ec2_instance_info: # it will list the ec2 instances
+        access_key: "{{AWS_Access_Key}} " 
+        secret_key: "{{AWS_Secret_Key}} "
+        region: "{{AWS_Region}}"
+      register: ec2_lists
+
+    - name: Print the Ec2 instances
+      debug:
+        msg: "{{ ec2_lists }}"
