@@ -1,7 +1,9 @@
 ### Install Python First
 
 ### Check and Install Boto3 using pip
+```
 pip install boto3
+```
 
 ### Install Ansible
 ``` Install Ansible
