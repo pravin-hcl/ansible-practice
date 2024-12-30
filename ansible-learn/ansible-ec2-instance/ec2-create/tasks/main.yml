@@ -1,0 +1,25 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for ec2-create
+
+- name: Creating EC2 instance using Ansible
+  amazon.aws.ec2_instance:
+    name: "{{ item.name }}"
+    key_name: "ansible-keypair"
+    # vpc_subnet_id:   ## not needed, it will choose any one of the subnet.
+    instance_type: "{{ item.instance_id }}"
+    security_group: default
+    network_interfaces:
+      - assign_public_ip: true
+    image_id: ami-003f5a76758516d1e
+    tags:
+      Environment: demo-server
+      Created-By: Ansible-Server
+    access_key: "{{AWS_Access_Key}}"
+    secret_key: "{{AWS_Secret_Key}}"
+    region: "{{AWS_Region}}"
+    # state: terminated  # For terminating instances
+  loop:
+    - { name: "node-1", instance_id: t2.micro }
+    - { name: "node-2", instance_id: t2.micro }
+    - { name: "node-3", instance_id: t2.micro } 
