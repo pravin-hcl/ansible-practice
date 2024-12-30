@@ -1,5 +1,8 @@
-
-
+# Change to Root User
+```
+sudo su
+```
+- Converting to sudo user only will work for copying keys using **ssh-copy-id** . Make sure to change as sudo user.
 
 ### Create the key file in local machine
 
