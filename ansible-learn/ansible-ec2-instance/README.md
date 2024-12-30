@@ -1,6 +1,18 @@
 ### Install Python First
 
 ### Check and Install Boto3 using pip
+pip install boto3
+
+### Install Ansible
+``` Install Ansible
+python3 -m pip install --user ansible
+```
+``` Install Ansible Core
+python3 -m pip install --user ansible-core
+```
+``` Upgrade Ansible 
+python3 -m pip install --upgrade --user ansible
+```
 
 ### Install Ansible AWS Collection from Ansible Galaxy 
 ```
