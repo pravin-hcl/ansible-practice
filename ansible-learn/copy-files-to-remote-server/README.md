@@ -15,3 +15,14 @@
 scp -i <pem_file> <files_to_copy_from_local> username@IP:<path_to_paste_file_in_remote_server>
 ```
 
+### Recrusive Copying of Folders and All.
+
+- Eg: Recrusively Copying of folders
+```
+scp -r -i ansible-keypair.pem practice-ansible/ ubuntu@3.107.27.250:/home/ubuntu/
+```
+
+- Eg: Recrusively Copying all files " . "
+```
+scp -r -i ansible-keypair.pem . ubuntu@3.107.27.250:/home/ubuntu/ansible-learn/
+```
