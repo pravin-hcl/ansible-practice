@@ -1,0 +1,27 @@
+name: Ansible Dynamic Inventory
+plugin: amazon.aws.aws_ec2
+regions:
+ - ap-southeast-2
+
+
+aws_access_key: 
+aws_secret_key: 
+
+hostnames:
+  # This option allows displaying the public ip addresses.
+  - ip-address
+
+    #  - name: 'private-ip-address'
+    #separator: '_'
+    #prefix: 'tag:Name'
+
+filters:
+  # All instances with their `Environment` tag set to `dev`
+  tag:Environment:
+    -  dev
+    - qa
+
+# Define prefix and suffix for host variables coming from AWS.
+hostvars_prefix: 'aws_'
+hostvars_suffix: '_ec2'
+

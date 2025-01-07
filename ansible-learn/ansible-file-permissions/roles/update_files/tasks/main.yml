@@ -1,0 +1,6 @@
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /home/ubuntu/history.json
+    owner: ubuntu
+    group: ubuntu
+    mode: '000'
